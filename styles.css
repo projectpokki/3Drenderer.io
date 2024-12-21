@@ -15,7 +15,7 @@ body {
   height: calc(min(100vw, 100vh));
   width: calc(min(100vw, 100vh));
   top: 0px;
-  left: 0px;
+  left: calc(50vw - min(50vw, 50vh));
   position: absolute;
   z-index: -1;
 }
