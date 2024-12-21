@@ -23,7 +23,7 @@ function togglePerspective() {
 }
 
 function screenVerticesToTriangle(point1, point2, point3) {
-  return "polygon(" + String(point1[0]) + "% "+ String(point1[1]) + "%,"
+  return "polygon(" + String(point1[0]) + "% " + String(point1[1]) + "%,"
     + String(point2[0]) + "% " + String(point2[1]) + "%,"
     + String(point3[0]) + "% " + String(point3[1]) + "%)";
 }
@@ -50,7 +50,7 @@ function rotatePoint(point) {
   return [
     point[0] * cosy + (point[1] * sinx + point[2] * cosx) * siny,
     point[1] * cosx - point[2] * sinx,
-    - point[0] * siny + (point[1] * sinx + point[2] * cosx) * cosy
+    -point[0] * siny + (point[1] * sinx + point[2] * cosx) * cosy
   ];
 }
 
@@ -70,11 +70,11 @@ setInterval(function () {
       box.style["display"] = "none";
       continue;
     }
-    var slant = Math.floor(Math.sin(- normal[1]) * 0x80) + 0x80;
+    var slant = Math.floor(Math.sin(-normal[1]) * 0x80) + 0x80;
     var slantHexStr = slant.toString(16);
     box.style["background-color"] = "#" + slantHexStr + slantHexStr + slantHexStr;
     box.style["display"] = "block";
-    box.style["z-index"] = 0xFFFF - Math.floor(normal[2] * 0xFFFF);
+    box.style["z-index"] = 0x10000 - Math.floor(normal[2] * 0x10000);
     
     var triangleRotatedPoints = [
       rotatePoint(shapePoints[shape][shapeTriangles[shape][i][0]]),
