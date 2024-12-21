@@ -54,7 +54,7 @@ function rotatePoint(point) {
   ];
 }
 
-for (var i = 0; i < triangleCount[shape]; i++) {
+for (var i = 0; i < triangleCountMax; i++) {
   var box = document.createElement("div");
   box.setAttribute("class", "triangle");
   box.setAttribute("id", String(i));
