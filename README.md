@@ -1,2 +1,2 @@
 # 3Drenderer.io
-Render 3d shapes in pure js
+Render 3d shapes in html/css/js
