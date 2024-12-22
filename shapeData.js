@@ -2,17 +2,16 @@ const shapeSize = 15;
 const camZDisp = 4;
 const persViewSizeMult = 0.8;
 const FOV = [1, 1];
-const shadeMult = 128;
 const dAlpha = 0.12;
 const dBeta = 0.05;
 
 const triangleColors = [
-  [127, 0, 0],
-  [127, 127, 0],
-  [0, 127, 0],
-  [0, 127, 127],
-  [0, 0, 127],
-  [127, 0, 127],
+  [255, 0, 0],
+  [255, 255, 0],
+  [0, 255, 0],
+  [0, 255, 255],
+  [0, 0, 255],
+  [255, 0, 255],
 ];
 
 const shapePoints = [
