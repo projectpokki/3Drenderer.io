@@ -6,12 +6,12 @@
   </head>
   <body>
     <div id="viewport" class="viewport">
-      <div id="UI" class="UI">
-        <div onclick="prevShape()" class="UIBox buttonPrev">&lt=</div>
-        <div id="shapeName" class="UIBox shapeName">cube</div>
-        <div onclick="nextShape()" class="UIBox buttonNext">=&gt</div>
-        <div onclick="togglePerspective()" id="viewMode" class="UIBox viewMode">perspective</div>
-      </div>
+      <div onclick="prevShape()" class="UIBox Row1 buttonPrev">&lt=</div>
+      <div id="shapeName" class="UIBox Row1 shapeName">cube</div>
+      <div onclick="nextShape()" class="UIBox Row1 buttonNext">=&gt</div>
+      <div onclick="togglePerspective()" id="viewMode" class="UIBox Row1 viewMode">perspective</div>
+      <div onclick="toggleColor()" id="colorMode" class="UIBox Row2 colorMode">colored</div>
+      <div onclick="toggleShade()" id="shadeMode" class="UIBox Row2 shadeMode">shaded</div>
     </div>
     <script src="shapeData.js"></script>
     <script src="renderer.js"></script>
