@@ -1,4 +1,6 @@
 var perspectiveView = true;
+var colorView = true;
+var shadeView = true;
 var shape = 0;
 var alpha = 0;
 var beta = 0;
@@ -19,6 +21,24 @@ function togglePerspective() {
     document.getElementById("viewMode").innerHTML = "perspective";
   } else {
     document.getElementById("viewMode").innerHTML = "orthographic";
+  }
+}
+
+function toggleColor() {
+  colorView = ! colorView;
+  if (colorView) {
+    document.getElementById("colorMode").innerHTML = "colored";
+  } else {
+    document.getElementById("colorMode").innerHTML = "uncolored";
+  }
+}
+
+function toggleShade() {
+  shadeView = ! shadeView;
+  if (shadeView) {
+    document.getElementById("shadeMode").innerHTML = "shaded";
+  } else {
+    document.getElementById("shadeMode").innerHTML = "unshaded";
   }
 }
 
@@ -54,6 +74,21 @@ function rotatePoint(point) {
   ];
 }
 
+function numToHex(input) {
+  if (input >= 255) {
+    return "FF";
+  }
+  if (input <= 0) {
+    return "00"
+  }
+  
+  var rawStr = (Math.floor(input)).toString(16);
+  if (rawStr.length == 1) {
+    return "0" + rawStr;
+  }
+  return rawStr;
+}
+
 for (var i = 0; i < triangleCountMax; i++) {
   var box = document.createElement("div");
   box.setAttribute("class", "triangle");
@@ -70,9 +105,18 @@ setInterval(function () {
       box.style["display"] = "none";
       continue;
     }
-    var slant = Math.floor(Math.sin(-normal[1]) * 0x80) + 0x80;
-    var slantHexStr = slant.toString(16);
-    box.style["background-color"] = "#" + slantHexStr + slantHexStr + slantHexStr;
+
+    var color = [255, 255, 255];
+    var shade = 1;
+    
+    if (colorView) {
+      color = triangleColors[i%6];
+    }
+    if (shadeView) {
+      shade = (1 - (normal[1] + 1) * 0.5);
+    }
+    
+    box.style["background-color"] = "#" + intToHex(shade*color[0]) + intToHex(shade*color[1]) + intToHex(shade*color[2]);
     box.style["display"] = "block";
     box.style["z-index"] = 0x10000 - Math.floor(normal[2] * 0x10000);
     
