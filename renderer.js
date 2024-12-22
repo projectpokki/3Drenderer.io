@@ -116,7 +116,7 @@ setInterval(function () {
       shadeMultiplier = (1 - (normal[1] + 1) * 0.5);
     }
     
-    box.style["background-color"] = "#" + intToHex(shadeMultiplier*color[0]) + intToHex(shadeMultiplier*color[1]) + intToHex(shadeMultiplier*color[2]);
+    box.style["background-color"] = "#" + numToHex(shadeMultiplier*color[0]) + numToHex(shadeMultiplier*color[1]) + numToHex(shadeMultiplier*color[2]);
     box.style["display"] = "block";
     box.style["z-index"] = 0x10000 - Math.floor(normal[2] * 0x10000);
     
