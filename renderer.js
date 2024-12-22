@@ -107,7 +107,7 @@ setInterval(function () {
     }
 
     var color = [255, 255, 255];
-    var shade = 1;
+    var shadeMultiplier = 1;
     
     if (colorView) {
       color = triangleColors[i%6];
