@@ -118,7 +118,6 @@ setInterval(function () {
     
     box.style["background-color"] = "#" + numToHex(shadeMultiplier*color[0]) + numToHex(shadeMultiplier*color[1]) + numToHex(shadeMultiplier*color[2]);
     box.style["display"] = "block";
-    box.style["z-index"] = 0x10000 - Math.floor(normal[2] * 0x10000);
     
     var triangleRotatedPoints = [
       rotatePoint(shapePoints[shape][shapeTriangles[shape][i][0]]),
@@ -141,7 +140,7 @@ setInterval(function () {
       ];
     }
 
-    
+    box.style["z-index"] = 0xFFFF - Math.floor((triangleRotatedPoints[0][2] + triangleRotatedPoints[1][2] + triangleRotatedPoints[2][2]) * 0x4CCCC);
     box.style["clip-path"] = screenVerticesToTriangle(pointsOnScreen[0], pointsOnScreen[1], pointsOnScreen[2]);
   }
   
