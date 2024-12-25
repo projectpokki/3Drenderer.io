@@ -140,7 +140,7 @@ setInterval(function () {
       ];
     }
 
-    box.style["z-index"] = 0xFFFF - Math.floor((triangleRotatedPoints[0][2] + triangleRotatedPoints[1][2] + triangleRotatedPoints[2][2]) * 0x4CCCC);
+    box.style["z-index"] = 0xFFFFFF - Math.floor((triangleRotatedPoints[0][2] + triangleRotatedPoints[1][2] + triangleRotatedPoints[2][2]) * 0x4CCCCC);
     box.style["clip-path"] = screenVerticesToTriangle(pointsOnScreen[0], pointsOnScreen[1], pointsOnScreen[2]);
   }
   
