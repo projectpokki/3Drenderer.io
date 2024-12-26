@@ -99,11 +99,32 @@ for (var i = 0; i < triangleCountMax; i++) {
 setInterval(function () {
   for (var i = 0; i < triangleCount[shape]; i++) {
     var box = document.getElementById(String(i));
+
+    var triangleRotatedPoints = [
+      rotatePoint(shapePoints[shape][shapeTriangles[shape][i][0]]),
+      rotatePoint(shapePoints[shape][shapeTriangles[shape][i][1]]),
+      rotatePoint(shapePoints[shape][shapeTriangles[shape][i][2]])
+    ];
+    
+    var vectToTriangleMid = [
+      (triangleRotatedPoints[0][0] + triangleRotatedPoints[1][0] + triangleRotatedPoints[2][0]) / 3,
+      (triangleRotatedPoints[0][1] + triangleRotatedPoints[1][1] + triangleRotatedPoints[2][1]) / 3,
+      (triangleRotatedPoints[0][2] + triangleRotatedPoints[1][2] + triangleRotatedPoints[2][2]) / 3 + camZDisp
+    ];
     
     var normal = rotatePoint(shapeNormals[shape][i], alpha, beta);
-    if (normal[2] > 0) {
-      box.style["display"] = "none";
-      continue;
+    var dotProd = vectToTriangleMid[0] * normal[0] + vectToTriangleMid[1] * normal[1] + (vectToTriangleMid[2]) * normal[2];
+    
+    if (perspectiveView) {
+      if (dotProd >= 0) {
+        box.style["display"] = "none";
+        continue;
+      }
+    } else {
+      if (normal[2] >= 0) {
+        box.style["display"] = "none";
+        continue;
+      }
     }
 
     var color = [255, 255, 255];
@@ -118,12 +139,6 @@ setInterval(function () {
     
     box.style["background-color"] = "#" + numToHex(shadeMultiplier*color[0]) + numToHex(shadeMultiplier*color[1]) + numToHex(shadeMultiplier*color[2]);
     box.style["display"] = "block";
-    
-    var triangleRotatedPoints = [
-      rotatePoint(shapePoints[shape][shapeTriangles[shape][i][0]]),
-      rotatePoint(shapePoints[shape][shapeTriangles[shape][i][1]]),
-      rotatePoint(shapePoints[shape][shapeTriangles[shape][i][2]])
-    ];
     
     var pointsOnScreen;
     if (perspectiveView) {
