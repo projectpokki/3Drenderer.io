@@ -112,7 +112,31 @@ setInterval(function () {
       (triangleRotatedPoints[0][2] + triangleRotatedPoints[1][2] + triangleRotatedPoints[2][2]) / 3 + camZDisp
     ];
     
-    var normal = rotatePoint(shapeNormals[shape][i], alpha, beta);
+    var vectSideA = [
+      triangleRotatedPoints[1][0] - triangleRotatedPoints[0][0],
+      triangleRotatedPoints[1][1] - triangleRotatedPoints[0][1],
+      triangleRotatedPoints[1][2] - triangleRotatedPoints[0][2]
+    ];
+    
+    var vectSideB = [
+      triangleRotatedPoints[2][0] - triangleRotatedPoints[0][0],
+      triangleRotatedPoints[2][1] - triangleRotatedPoints[0][1],
+      triangleRotatedPoints[2][2] - triangleRotatedPoints[0][2]
+    ];
+    
+    var crossProd = [
+      vectSideA[1] * vectSideB[2] - vectSideA[2] * vectSideB[1],
+      vectSideA[2] * vectSideB[0] - vectSideA[0] * vectSideB[2],
+      vectSideA[0] * vectSideB[1] - vectSideA[1] * vectSideB[0]
+    ];
+    
+    var crossMag = (crossProd[0] ** 2 + crossProd[1] ** 2 + crossProd[2] ** 2) ** 0.5;
+    var normal = [
+      crossProd[0] / crossMag,
+      crossProd[1] / crossMag,
+      crossProd[2] / crossMag
+    ];
+    
     var dotProd = vectToTriangleMid[0] * normal[0] + vectToTriangleMid[1] * normal[1] + (vectToTriangleMid[2]) * normal[2];
     
     if (perspectiveView) {
