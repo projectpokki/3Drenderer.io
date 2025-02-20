@@ -100,10 +100,30 @@ setInterval(function () {
   for (var i = 0; i < triangleCount[shape]; i++) {
     var box = document.getElementById(String(i));
 
+    var point1; var point2; var point3;
+    var quadArrLen2 = shapeQuads[shape].length * 2;
+    if (i < quadArrLen2) {
+      if (i % 2 == 0) {
+        var quadInd = i / 2;
+        point1 = shapeQuads[shape][quadInd][0];
+        point2 = shapeQuads[shape][quadInd][1];
+        point3 = shapeQuads[shape][quadInd][2];
+      } else {
+        var quadInd = (i - 1) / 2;
+        point1 = shapeQuads[shape][quadInd][0];
+        point2 = shapeQuads[shape][quadInd][3];
+        point3 = shapeQuads[shape][quadInd][1];
+      }
+    } else {
+      point1 = shapeTriangles[shape][i - quadArrLen2][0];
+      point2 = shapeTriangles[shape][i - quadArrLen2][1];
+      point3 = shapeTriangles[shape][i - quadArrLen2][2];
+    }
+
     var triangleRotatedPoints = [
-      rotatePoint(shapePoints[shape][shapeTriangles[shape][i][0]]),
-      rotatePoint(shapePoints[shape][shapeTriangles[shape][i][1]]),
-      rotatePoint(shapePoints[shape][shapeTriangles[shape][i][2]])
+      rotatePoint(shapePoints[shape][point1]),
+      rotatePoint(shapePoints[shape][point2]),
+      rotatePoint(shapePoints[shape][point3])
     ];
     
     var vectToTriangleMid = [
