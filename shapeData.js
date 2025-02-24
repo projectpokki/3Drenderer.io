@@ -203,7 +203,14 @@ const shapePoints = [
     [0.75, 1, 0.75],
     [-0.75, 1, 0.75]
   ],
-  [//pyramid
+  [//square pyramid
+    [1, -1, 1],
+    [-1, -1, 1],
+    [-1, -1, -1],
+    [1, -1, -1],
+    [0, 1, 0]
+  ],
+  [//hex pyramid
     [0, 0, 1],
     [1, 0, -1],
     [0.5, 0.8660254037844386, -1],
@@ -400,9 +407,14 @@ const shapeQuads = [
     [29, 20, 21, 28],
     [30, 22, 23, 29],
     [31, 24, 25, 30],
-    [27, 31, 26, 28],
+    [27, 31, 26, 28]
   ],
-  [//pyramid
+  [//square pyramid
+    [0, 4, 1, 3],
+    [2, 4, 3, 1],
+    [2, 0, 1, 3]
+  ],
+  [//hex pyramid
     [2, 0, 1, 3],
     [4, 0, 3, 5],
     [6, 0, 5, 1],
@@ -421,7 +433,7 @@ const shapeQuads = [
 
 //vertices in anticlockwise direction for cross product in right direction
 const shapeTriangles = [
-  [], [], [], [], [], [], [], [], [], []//old shapes
+  [], [], [], [], [], [], [], [], [], [], []//old shapes
 ];
 
 const shapeNames = [
@@ -433,7 +445,8 @@ const shapeNames = [
   "cross",
   "tube",
   "cage",
-  "pyramid",
+  "pyramid 1",
+  "pyramid 2",
   "antiprism"
 ]
 
@@ -446,6 +459,7 @@ const triangleCount = [
   36,
   64,
   96,
+  6,
   10,
   12
 ];
